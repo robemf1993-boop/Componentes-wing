@@ -47,15 +47,15 @@
         <!-- ========================================== -->
         <section id="screen-splash" class="screen active flex-col justify-between p-6 h-full text-center bg-gradient-to-b from-slate-900 via-industrial-dark to-slate-950">
             <div class="pt-6 flex flex-col items-center">
-                <div class="w-36 h-36 bg-industrial-card border-2 border-industrial-accent rounded-3xl overflow-hidden mb-4 shadow-lg shadow-cyan-500/10 flex items-center justify-center relative">
+                <div class="w-36 h-36 bg-industrial-card border-2 border-industrial-accent rounded-3xl overflow-hidden mb-3 shadow-lg shadow-cyan-500/10 flex items-center justify-center relative">
                     <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=400&q=80" alt="Aerogenerador" class="w-full h-full object-cover">
                 </div>
-                <span class="px-3 py-1 bg-industrial-border/50 text-industrial-accent text-xs font-semibold tracking-wider uppercase rounded-full mb-2">Versión 3.5 Realtime Cloud</span>
+                <span class="px-3 py-1 bg-industrial-border/50 text-industrial-accent text-xs font-semibold tracking-wider uppercase rounded-full mb-1">Versión 3.7 Pro Cloud</span>
                 <h1 class="text-2xl font-bold tracking-tight text-white mb-1">COMPONENTES WING</h1>
                 <p class="text-slate-400 text-xs max-w-xs mx-auto">Diccionario Técnico Sincronizado en Tiempo Real</p>
             </div>
 
-            <div class="space-y-4 pb-6">
+            <div class="space-y-3 pb-4">
                 <div class="bg-industrial-card/60 border border-industrial-border p-3 rounded-2xl text-left text-xs text-slate-400 space-y-1.5 backdrop-blur-sm">
                     <div class="flex items-center space-x-2 text-slate-300">
                         <i class="fa-solid fa-circle-check text-industrial-accent"></i>
@@ -63,13 +63,17 @@
                     </div>
                     <div class="flex items-center space-x-2 text-slate-300">
                         <i class="fa-solid fa-circle-check text-industrial-accent"></i>
-                        <span>Modelos G52, G80, AW100, Clipper y más</span>
+                        <span>Modelos y partes totalmente editables</span>
                     </div>
                 </div>
                 <button onclick="router.navigate('login')" class="w-full py-3.5 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-bold rounded-2xl shadow-lg shadow-cyan-500/25 transition-all transform active:scale-95 flex items-center justify-center space-x-3">
                     <span>Iniciar Sistema</span>
                     <i class="fa-solid fa-arrow-right"></i>
                 </button>
+                <!-- Leyenda de Autoría -->
+                <div class="pt-1 text-[11px] text-slate-400 tracking-wide font-medium">
+                    Creado por: <span class="text-industrial-accent font-semibold">Ing. Roberto Matus Francisco</span>
+                </div>
             </div>
         </section>
 
@@ -182,39 +186,27 @@
         </section>
 
         <!-- ========================================== -->
-        <!-- 4. SELECCIÓN DE SECCIÓN (Ground / Nacelle) -->
+        <!-- 4. SELECCIÓN DE SECCIÓN (Partes del Aerogenerador) -->
         <!-- ========================================== -->
         <section id="screen-sections" class="screen flex-col h-full">
-            <div class="p-6 pb-4 border-b border-industrial-border flex items-center space-x-4 bg-industrial-dark">
-                <button onclick="router.navigate('models')" class="w-10 h-10 rounded-xl bg-industrial-card border border-industrial-border flex items-center justify-center text-slate-300 hover:text-white">
-                    <i class="fa-solid fa-arrow-left"></i>
-                </button>
-                <div>
-                    <h2 id="selected-model-title" class="text-lg font-bold text-white">Modelo</h2>
-                    <p class="text-slate-400 text-xs">Elige zona de inspección</p>
+            <div class="p-6 pb-4 border-b border-industrial-border flex items-center justify-between bg-industrial-dark">
+                <div class="flex items-center space-x-3">
+                    <button onclick="router.navigate('models')" class="w-10 h-10 rounded-xl bg-industrial-card border border-industrial-border flex items-center justify-center text-slate-300 hover:text-white">
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </button>
+                    <div>
+                        <h2 id="selected-model-title" class="text-lg font-bold text-white">Modelo</h2>
+                        <p class="text-slate-400 text-xs">Elige zona de inspección</p>
+                    </div>
                 </div>
+                <button onclick="openModal('modal-add-section')" class="px-3 py-2 bg-industrial-accent text-slate-950 font-bold text-xs rounded-xl shadow-md hover:bg-industrial-hover transition-colors flex items-center space-x-1">
+                    <i class="fa-solid fa-plus"></i>
+                    <span>Parte</span>
+                </button>
             </div>
 
-            <div class="flex-1 p-6 flex flex-col justify-center space-y-4">
-                <button onclick="selectSection('Ground')" class="group p-6 bg-industrial-card border border-industrial-border hover:border-industrial-accent rounded-3xl transition-all flex items-center space-x-5 text-left shadow-lg">
-                    <div class="w-16 h-16 rounded-2xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 text-2xl group-hover:scale-105 transition-transform">
-                        <i class="fa-solid fa-tower-observation"></i>
-                    </div>
-                    <div>
-                        <h3 class="text-lg font-bold text-white group-hover:text-industrial-accent transition-colors">Ground</h3>
-                        <p class="text-xs text-slate-400 mt-1">Base, cimentación, transformador de pie de torre y tableros.</p>
-                    </div>
-                </button>
-
-                <button onclick="selectSection('Nacelle')" class="group p-6 bg-industrial-card border border-industrial-border hover:border-industrial-accent rounded-3xl transition-all flex items-center space-x-5 text-left shadow-lg">
-                    <div class="w-16 h-16 rounded-2xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-industrial-accent text-2xl group-hover:scale-105 transition-transform">
-                        <i class="fa-solid fa-gears"></i>
-                    </div>
-                    <div>
-                        <h3 class="text-lg font-bold text-white group-hover:text-industrial-accent transition-colors">Nacelle (Góndola)</h3>
-                        <p class="text-xs text-slate-400 mt-1">Multiplicadora, generador, convertidor, yaw y freno.</p>
-                    </div>
-                </button>
+            <div id="sections-list" class="flex-1 overflow-y-auto p-6 space-y-3">
+                <!-- Se inyecta vía JavaScript -->
             </div>
         </section>
 
@@ -334,7 +326,71 @@
                         <input type="file" id="new-model-file" accept="image/*" class="w-full px-3 py-2 bg-industrial-dark border border-industrial-border rounded-xl text-slate-300 text-[11px] file:mr-3 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-[11px] file:font-semibold file:bg-industrial-accent file:text-slate-950 hover:file:bg-industrial-hover">
                     </div>
                     <button type="submit" class="w-full py-3 bg-industrial-accent hover:bg-industrial-hover text-slate-950 font-bold rounded-xl transition-all shadow-lg mt-2">
-                        Guardar Modelo (Cloud)
+                        Guardar Modelo
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- MODAL: AGREGAR NUEVA PARTE / ZONA          -->
+        <!-- ========================================== -->
+        <div id="modal-add-section" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+            <div class="bg-industrial-card border border-industrial-border w-full max-w-sm rounded-3xl p-6 relative shadow-2xl">
+                <button onclick="closeModal('modal-add-section')" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-industrial-border/50 text-slate-400 hover:text-white flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+                <h3 class="text-lg font-bold text-white mb-1">Agregar Nueva Parte</h3>
+                <p class="text-xs text-slate-400 mb-4">Añade una sección (ej. Hub, Pala, Torre) con imagen.</p>
+
+                <form onsubmit="handleAddSection(event)" class="space-y-3 text-xs">
+                    <div>
+                        <label class="block font-medium text-slate-400 mb-1">Nombre de la Parte / Zona</label>
+                        <input type="text" id="new-section-name" required placeholder="Ej. Hub (Buje)" class="w-full px-4 py-2.5 bg-industrial-dark border border-industrial-border rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-industrial-accent">
+                    </div>
+                    <div>
+                        <label class="block font-medium text-slate-400 mb-1">Imagen de Referencia de la Parte</label>
+                        <input type="file" id="new-section-file" accept="image/*" class="w-full px-3 py-2 bg-industrial-dark border border-industrial-border rounded-xl text-slate-300 text-[11px] file:mr-3 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-[11px] file:font-semibold file:bg-industrial-accent file:text-slate-950 hover:file:bg-industrial-hover">
+                    </div>
+                    <div>
+                        <label class="block font-medium text-slate-400 mb-1">Breve Descripción</label>
+                        <input type="text" id="new-section-desc" required placeholder="Ej. Conjunto central donde se fijan las palas..." class="w-full px-4 py-2.5 bg-industrial-dark border border-industrial-border rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-industrial-accent">
+                    </div>
+                    <button type="submit" class="w-full py-3 bg-industrial-accent hover:bg-industrial-hover text-slate-950 font-bold rounded-xl transition-all shadow-lg mt-2">
+                        Guardar Parte
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- MODAL: EDITAR PARTE / ZONA                 -->
+        <!-- ========================================== -->
+        <div id="modal-edit-section" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+            <div class="bg-industrial-card border border-industrial-border w-full max-w-sm rounded-3xl p-6 relative shadow-2xl">
+                <button onclick="closeModal('modal-edit-section')" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-industrial-border/50 text-slate-400 hover:text-white flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+                <h3 class="text-lg font-bold text-white mb-1">Editar Parte del Aerogenerador</h3>
+                <p class="text-xs text-slate-400 mb-4">Modifica los detalles de esta sección.</p>
+
+                <form onsubmit="handleEditSection(event)" class="space-y-3 text-xs">
+                    <div>
+                        <label class="block font-medium text-slate-400 mb-1">Nombre de la Parte / Zona</label>
+                        <input type="text" id="edit-section-name" required class="w-full px-4 py-2.5 bg-industrial-dark border border-industrial-border rounded-xl text-white focus:outline-none focus:border-industrial-accent">
+                    </div>
+                    <div>
+                        <label class="block font-medium text-slate-400 mb-1">Actualizar Imagen (Opcional)</label>
+                        <input type="file" id="edit-section-file" accept="image/*" class="w-full px-3 py-2 bg-industrial-dark border border-industrial-border rounded-xl text-slate-300 text-[11px] file:mr-3 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-[11px] file:font-semibold file:bg-industrial-accent file:text-slate-950 hover:file:bg-industrial-hover">
+                    </div>
+                    <div>
+                        <label class="block font-medium text-slate-400 mb-1">Breve Descripción</label>
+                        <input type="text" id="edit-section-desc" required class="w-full px-4 py-2.5 bg-industrial-dark border border-industrial-border rounded-xl text-white focus:outline-none focus:border-industrial-accent">
+                    </div>
+                    <button type="submit" class="w-full py-3 bg-industrial-accent hover:bg-industrial-hover text-slate-950 font-bold rounded-xl transition-all shadow-lg mt-2">
+                        Guardar Cambios de la Parte
                     </button>
                 </form>
             </div>
@@ -350,7 +406,7 @@
                 </button>
 
                 <h3 class="text-lg font-bold text-white mb-1">Nuevo Componente</h3>
-                <p class="text-xs text-slate-400 mb-4">Añade un elemento a la nube.</p>
+                <p class="text-xs text-slate-400 mb-4">Añade un elemento al diccionario.</p>
 
                 <form onsubmit="handleAddComponent(event)" class="space-y-3 text-xs">
                     <div>
@@ -374,7 +430,7 @@
                         <textarea id="new-comp-desc" rows="3" required placeholder="Explica su propósito principal..." class="w-full px-4 py-2.5 bg-industrial-dark border border-industrial-border rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-industrial-accent"></textarea>
                     </div>
                     <button type="submit" class="w-full py-3 bg-industrial-accent hover:bg-industrial-hover text-slate-950 font-bold rounded-xl transition-all shadow-lg mt-2">
-                        Registrar y Sincronizar
+                        Registrar Componente
                     </button>
                 </form>
             </div>
@@ -390,7 +446,7 @@
                 </button>
 
                 <h3 class="text-lg font-bold text-white mb-1">Editar Componente</h3>
-                <p class="text-xs text-slate-400 mb-4">Modifica los datos en la nube.</p>
+                <p class="text-xs text-slate-400 mb-4">Modifica los datos técnicos.</p>
 
                 <form onsubmit="handleEditComponent(event)" class="space-y-3 text-xs">
                     <div>
@@ -414,7 +470,7 @@
                         <textarea id="edit-comp-desc" rows="3" required class="w-full px-4 py-2.5 bg-industrial-dark border border-industrial-border rounded-xl text-white focus:outline-none focus:border-industrial-accent"></textarea>
                     </div>
                     <button type="submit" class="w-full py-3 bg-industrial-accent hover:bg-industrial-hover text-slate-950 font-bold rounded-xl transition-all shadow-lg mt-2">
-                        Actualizar en Nube
+                        Guardar Cambios
                     </button>
                 </form>
             </div>
@@ -446,14 +502,22 @@
             "Gamesa G52": {
                 icon: "fa-wind",
                 image: "",
-                "Ground": [
-                    { name: "Transformador de Base", pn: "TR-G52-01", desc: "Transformador elevador de media tensión ubicado en la base de la torre.", image: "", datasheet: "" },
-                    { name: "Tablero de Control Principal", pn: "TC-PLC-52", desc: "Gabinete principal que alberga el PLC de control y relés de protección.", image: "", datasheet: "" }
-                ],
-                "Nacelle": [
-                    { name: "Converter Control Unit (CCU)", pn: "CCU-ING-88", desc: "Unidad electrónica encargada de gestionar los IGBTs y el control de potencia.", image: "", datasheet: "" },
-                    { name: "Motor de Giro (Yaw Motor)", pn: "YM-G52-04", desc: "Motores eléctricos con reductores para alinear la góndola con el viento.", image: "", datasheet: "" }
-                ]
+                "Ground": {
+                    desc: "Base, cimentación, transformador de pie de torre y tableros.",
+                    image: "",
+                    components: [
+                        { name: "Transformador de Base", pn: "TR-G52-01", desc: "Transformador elevador de media tensión ubicado en la base de la torre.", image: "", datasheet: "" },
+                        { name: "Tablero de Control Principal", pn: "TC-PLC-52", desc: "Gabinete principal que alberga el PLC de control y relés de protección.", image: "", datasheet: "" }
+                    ]
+                },
+                "Nacelle": {
+                    desc: "Multiplicadora, generador, convertidor, yaw y freno.",
+                    image: "",
+                    components: [
+                        { name: "Converter Control Unit (CCU)", pn: "CCU-ING-88", desc: "Unidad electrónica encargada de gestionar los IGBTs y el control de potencia.", image: "", datasheet: "" },
+                        { name: "Motor de Giro (Yaw Motor)", pn: "YM-G52-04", desc: "Motores eléctricos con reductores para alinear la góndola con el viento.", image: "", datasheet: "" }
+                    ]
+                }
             }
         };
 
@@ -463,12 +527,12 @@
             currentScreen: 'splash',
             selectedModel: null,
             selectedSection: null,
+            editingSectionKey: null,
             selectedComponentIndex: null,
             isRegisterMode: false,
             database: {}
         };
 
-        // ESCUCHA EN TIEMPO REAL (REALTIME SYNC)
         function initRealtimeSync() {
             const dbRef = ref(db, 'aerogeneradores');
             onValue(dbRef, (snapshot) => {
@@ -476,11 +540,26 @@
                     set(dbRef, defaultDatabase);
                     appState.database = defaultDatabase;
                 } else {
-                    appState.database = snapshot.val();
+                    let cloudData = snapshot.val();
+                    Object.keys(cloudData).forEach(model => {
+                        Object.keys(cloudData[model]).forEach(key => {
+                            if (Array.isArray(cloudData[model][key])) {
+                                let oldComps = cloudData[model][key];
+                                cloudData[model][key] = {
+                                    desc: "Sección general del aerogenerador.",
+                                    image: "",
+                                    components: oldComps
+                                };
+                            }
+                        });
+                    });
+                    appState.database = cloudData;
                 }
-                // Refrescar pantalla actual si el usuario está navegando
+
                 if (appState.currentScreen === 'models') {
                     renderModels();
+                } else if (appState.currentScreen === 'sections') {
+                    renderSections();
                 } else if (appState.currentScreen === 'dictionary') {
                     renderComponents();
                 }
@@ -498,7 +577,6 @@
             }
         }
 
-        // Función para convertir imágenes a Base64 ultrarrápido y evitar bloqueos de Storage
         function fileToBase64(file) {
             return new Promise((resolve, reject) => {
                 if (!file) {
@@ -520,7 +598,10 @@
                     target.classList.add('active');
                     appState.currentScreen = screenId;
                     if (screenId === 'models') renderModels();
-                    if (screenId === 'sections') document.getElementById('selected-model-title').textContent = appState.selectedModel;
+                    if (screenId === 'sections') {
+                        document.getElementById('selected-model-title').textContent = appState.selectedModel;
+                        renderSections();
+                    }
                     if (screenId === 'dictionary') {
                         document.getElementById('dict-subtitle').textContent = `${appState.selectedModel} / ${appState.selectedSection}`;
                         document.getElementById('search-input').value = '';
@@ -627,8 +708,16 @@
                 appState.database[modelName] = {
                     icon: "fa-industry",
                     image: imageUrl,
-                    "Ground": [{ name: "Componente Base Inicial", pn: "INIT-001", desc: "Referencia inicial.", image: "", datasheet: "" }],
-                    "Nacelle": [{ name: "Componente Góndola Inicial", pn: "INIT-002", desc: "Referencia inicial.", image: "", datasheet: "" }]
+                    "Ground": {
+                        desc: "Base, cimentación, transformador de pie de torre y tableros.",
+                        image: "",
+                        components: [{ name: "Transformador de Base", pn: "INIT-001", desc: "Referencia inicial.", image: "", datasheet: "" }]
+                    },
+                    "Nacelle": {
+                        desc: "Multiplicadora, generador, convertidor, yaw y freno.",
+                        image: "",
+                        components: [{ name: "Multiplicadora", pn: "INIT-002", desc: "Referencia inicial.", image: "", datasheet: "" }]
+                    }
                 };
 
                 await saveFullDatabaseToCloud();
@@ -637,15 +726,128 @@
             }
         }
 
+        // RENDERIZAR SECCIONES / PARTES CON OPCIÓN DE EDITAR Y ELIMINAR
+        window.renderSections = function() {
+            const container = document.getElementById('sections-list');
+            container.innerHTML = '';
+            const modelData = appState.database[appState.selectedModel] || {};
+            const sections = Object.keys(modelData).filter(k => k !== 'image' && k !== 'icon');
+
+            sections.forEach(sectionKey => {
+                const secInfo = modelData[sectionKey];
+                const card = document.createElement('div');
+                card.className = "p-4 bg-industrial-card border border-industrial-border hover:border-industrial-accent rounded-3xl transition-all flex items-center justify-between text-left group shadow-lg cursor-pointer";
+                card.onclick = () => selectSection(sectionKey);
+
+                let thumbHtml = `<div class="w-14 h-14 rounded-2xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-industrial-accent text-xl flex-shrink-0 group-hover:scale-105 transition-transform"><i class="fa-solid fa-gears"></i></div>`;
+                if (secInfo.image) {
+                    thumbHtml = `<img src="${secInfo.image}" class="w-14 h-14 rounded-2xl object-cover border border-industrial-border flex-shrink-0 group-hover:scale-105 transition-transform">`;
+                }
+
+                card.innerHTML = `
+                    <div class="flex items-center space-x-4 flex-1">
+                        ${thumbHtml}
+                        <div>
+                            <h3 class="text-base font-bold text-white group-hover:text-industrial-accent transition-colors">${sectionKey}</h3>
+                            <p class="text-xs text-slate-400 mt-0.5 line-clamp-1">${secInfo.desc || 'Inspección y componentes de la zona.'}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <button onclick="openEditSectionModal(event, '${sectionKey}')" class="w-8 h-8 rounded-lg bg-cyan-500/10 hover:bg-cyan-500/20 text-industrial-accent border border-cyan-500/30 flex items-center justify-center transition-colors" title="Editar parte"><i class="fa-solid fa-pen text-xs"></i></button>
+                        <button onclick="deleteSection(event, '${sectionKey}')" class="w-8 h-8 rounded-lg bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border border-rose-500/30 flex items-center justify-center transition-colors" title="Eliminar parte"><i class="fa-solid fa-trash-can text-xs"></i></button>
+                        <i class="fa-solid fa-chevron-right text-slate-500 text-xs ml-1"></i>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
         window.selectSection = function(section) {
             appState.selectedSection = section;
             router.navigate('dictionary');
         }
 
+        window.handleAddSection = async function(event) {
+            event.preventDefault();
+            const name = document.getElementById('new-section-name').value.trim();
+            const desc = document.getElementById('new-section-desc').value.trim();
+            const fileInput = document.getElementById('new-section-file');
+
+            if (name) {
+                let imageUrl = "";
+                if (fileInput.files && fileInput.files[0]) {
+                    imageUrl = await fileToBase64(fileInput.files[0]);
+                }
+
+                if (!appState.database[appState.selectedModel][name]) {
+                    appState.database[appState.selectedModel][name] = {
+                        desc: desc,
+                        image: imageUrl,
+                        components: []
+                    };
+                    await saveFullDatabaseToCloud();
+                }
+
+                document.getElementById('new-section-name').value = '';
+                document.getElementById('new-section-desc').value = '';
+                document.getElementById('new-section-file').value = '';
+                closeModal('modal-add-section');
+                renderSections();
+            }
+        }
+
+        window.openEditSectionModal = function(event, sectionKey) {
+            event.stopPropagation();
+            appState.editingSectionKey = sectionKey;
+            const secInfo = appState.database[appState.selectedModel][sectionKey];
+
+            document.getElementById('edit-section-name').value = sectionKey;
+            document.getElementById('edit-section-desc').value = secInfo.desc || '';
+            document.getElementById('edit-section-file').value = '';
+
+            openModal('modal-edit-section');
+        }
+
+        window.handleEditSection = async function(event) {
+            event.preventDefault();
+            const oldKey = appState.editingSectionKey;
+            const newKey = document.getElementById('edit-section-name').value.trim();
+            const newDesc = document.getElementById('edit-section-desc').value.trim();
+            const fileInput = document.getElementById('edit-section-file');
+
+            if (oldKey && newKey) {
+                let secObj = appState.database[appState.selectedModel][oldKey];
+                secObj.desc = newDesc;
+
+                if (fileInput.files && fileInput.files[0]) {
+                    secObj.image = await fileToBase64(fileInput.files[0]);
+                }
+
+                if (oldKey !== newKey) {
+                    appState.database[appState.selectedModel][newKey] = secObj;
+                    delete appState.database[appState.selectedModel][oldKey];
+                }
+
+                await saveFullDatabaseToCloud();
+                closeModal('modal-edit-section');
+                renderSections();
+            }
+        }
+
+        window.deleteSection = async function(event, sectionKey) {
+            event.stopPropagation();
+            if (confirm(`¿Estás seguro de eliminar la parte "${sectionKey}" y todos sus componentes?`)) {
+                delete appState.database[appState.selectedModel][sectionKey];
+                await saveFullDatabaseToCloud();
+                renderSections();
+            }
+        }
+
         window.renderComponents = function(filterText = '') {
             const container = document.getElementById('components-list');
             container.innerHTML = '';
-            const comps = appState.database[appState.selectedModel]?.[appState.selectedSection] || [];
+            const sectionData = appState.database[appState.selectedModel]?.[appState.selectedSection];
+            const comps = sectionData?.components || [];
             
             comps.forEach((comp, realIndex) => {
                 if (filterText && !comp.name.toLowerCase().includes(filterText.toLowerCase()) && !comp.pn.toLowerCase().includes(filterText.toLowerCase())) return;
@@ -678,7 +880,7 @@
 
         window.openComponentDetail = function(index) {
             appState.selectedComponentIndex = index;
-            const comp = appState.database[appState.selectedModel][appState.selectedSection][index];
+            const comp = appState.database[appState.selectedModel][appState.selectedSection].components[index];
             document.getElementById('detail-title').textContent = comp.name;
             document.getElementById('detail-partnumber').textContent = `P/N: ${comp.pn}`;
             document.getElementById('detail-desc').textContent = comp.desc;
@@ -705,7 +907,7 @@
         }
 
         window.openFullScreenImage = function() {
-            const comp = appState.database[appState.selectedModel][appState.selectedSection][appState.selectedComponentIndex];
+            const comp = appState.database[appState.selectedModel][appState.selectedSection].components[appState.selectedComponentIndex];
             if (comp && comp.image) {
                 document.getElementById('fullscreen-img').src = comp.image;
                 openModal('modal-fullscreen');
@@ -723,11 +925,11 @@
             const fileInput = document.getElementById('new-comp-file');
 
             if (name && pn && desc) {
-                if (!appState.database[appState.selectedModel][appState.selectedSection]) {
-                    appState.database[appState.selectedModel][appState.selectedSection] = [];
-                }
+                let sectionObj = appState.database[appState.selectedModel][appState.selectedSection];
+                if (!sectionObj.components) sectionObj.components = [];
+
                 let imageUrl = fileInput.files && fileInput.files[0] ? await fileToBase64(fileInput.files[0]) : "";
-                appState.database[appState.selectedModel][appState.selectedSection].push({ name, pn, datasheet, desc, image: imageUrl });
+                sectionObj.components.push({ name, pn, datasheet, desc, image: imageUrl });
                 await saveFullDatabaseToCloud();
                 closeModal('modal-add-component');
                 renderComponents();
@@ -736,7 +938,7 @@
 
         window.openEditComponentModal = function() {
             closeModal('modal-detail');
-            const comp = appState.database[appState.selectedModel][appState.selectedSection][appState.selectedComponentIndex];
+            const comp = appState.database[appState.selectedModel][appState.selectedSection].components[appState.selectedComponentIndex];
             document.getElementById('edit-comp-name').value = comp.name;
             document.getElementById('edit-comp-pn').value = comp.pn;
             document.getElementById('edit-comp-datasheet').value = comp.datasheet || '';
@@ -752,7 +954,7 @@
             const desc = document.getElementById('edit-comp-desc').value.trim();
             const fileInput = document.getElementById('edit-comp-file');
 
-            const comp = appState.database[appState.selectedModel][appState.selectedSection][appState.selectedComponentIndex];
+            const comp = appState.database[appState.selectedModel][appState.selectedSection].components[appState.selectedComponentIndex];
             comp.name = name;
             comp.pn = pn;
             comp.datasheet = datasheet;
@@ -768,7 +970,7 @@
 
         window.deleteCurrentComponent = async function() {
             if (confirm('¿Eliminar este componente?')) {
-                appState.database[appState.selectedModel][appState.selectedSection].splice(appState.selectedComponentIndex, 1);
+                appState.database[appState.selectedModel][appState.selectedSection].components.splice(appState.selectedComponentIndex, 1);
                 await saveFullDatabaseToCloud();
                 closeModal('modal-detail');
                 renderComponents();
@@ -780,7 +982,7 @@
 
         window.onload = function() {
             router.navigate('splash');
-            initRealtimeSync(); // Iniciar escucha en tiempo real
+            initRealtimeSync();
         };
     </script>
 </body>
